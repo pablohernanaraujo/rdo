@@ -6,7 +6,14 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   devServer: {
     hot: true,
-    open: true,
+    port: 9000,
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+      progress: true,
+    },
   },
   plugins: [
     new ReactRefreshWebpackPlugin(),

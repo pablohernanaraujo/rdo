@@ -14,10 +14,15 @@
       "babel-module": {},
       "node": {
         "extensions": [".ts", ".tsx"]
-      }
+      },
+      "alias": [
+        ["@ui", "./src/ui"],
+        ["@core", "./src/core"],
+        ["@theme", "./src/theme"]
+      ]
     }
   },
-  "plugins": ["prettier", "@typescript-eslint", "react-hooks", "unicorn"],
+  "plugins": ["prettier", "@typescript-eslint", "react-hooks", "unicorn", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -29,7 +34,6 @@
     "plugin:import/warnings",
     "plugin:import/typescript",
     "plugin:jsx-a11y/recommended",
-    "plugin:eslint-comments/recommended",
     "plugin:prettier/recommended",
     "prettier"
   ],

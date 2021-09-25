@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@theme/*": ["./theme/*"],
+      "@ui/*": ["./ui/*"],
+      "@core/*": ["./core/*"],
+    },
     "target": "ES5",
     "module": "ESNext",
     "moduleResolution": "node",

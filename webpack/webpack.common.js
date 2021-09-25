@@ -2,8 +2,32 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+function normalizeName(name) {
+  return name.replace(/node_modules/g, "nodemodules").replace(/[\-_.|]+/g, " ")
+    .replace(/\b(vendors|nodemodules|js|modules|es)\b/g, "")
+    .trim().replace(/ +/g, "-");
+}
+
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
+  output: {
+    clean: true,
+    path: path.resolve(__dirname, '..', './build'),
+    filename: (pathData) => {
+      return pathData.chunk.name === 'vendor' ? '[name].js' : '[name].[hash].js';
+    },
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "initial",
+        },
+      },
+    },
+  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
@@ -27,10 +51,6 @@ module.exports = {
         type: 'asset/inline',
       },
     ],
-  },
-  output: {
-    path: path.resolve(__dirname, '..', './build'),
-    filename: 'bundle.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
