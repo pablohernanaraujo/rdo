@@ -22,9 +22,10 @@
         "root": ["./src"],
         "extensions": [".ts", ".tsx", ".json"],
         "alias": {
+          "@pages": "./src/pages",
+          "@theme": "./src/theme",
           "@ui": "./src/ui",
-          "@core": "./src/core",
-          "@theme": "./src/theme"
+          "@core": "./src/core"
         }
       }
     ],
